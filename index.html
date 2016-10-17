@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <label for="message">Message</label>
+  <input type="text" id="message">
+  <button type="button" id="send-message">Send Message</button>
+  <ul id="message-list">
+
+  </ul>
+
+  <script   src="http://code.jquery.com/jquery-2.2.4.min.js"   integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="   crossorigin="anonymous"></script>
+  <script type="text/javascript">
+    var worker = new Worker('./demo.js');
+    //receive messages
+    worker.onmessage = function (e) {
+      var message = e.data;
+      $('#message-list').append('<li>' + message + '</li>');
+
+    };
+    // $('#send-message').on('click', function() {
+      // var msg = $('#message').val();
+      var message = { messagekey: 'msg' };
+      send message
+      worker.postMessage(message);
+    // });
+
+    // setTimeout(function () {
+    //   $('#message-list').append('<li>' + message + '</li>')}, 1000);
+  </script>
+</body>
+</html>
